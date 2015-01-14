@@ -1,0 +1,1 @@
+<?php echo "<?php if (isset(\$id)) { echo json_encode(\${$singularVar}); } else { echo json_encode(\${$pluralVar}); } ?>\n"; ?>
