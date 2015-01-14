@@ -27,7 +27,7 @@
 			switch ($this->request->method()) {
 				case 'GET':
 					if (!$id) {
-						$<?php echo $pluralName; ?> = $this-><?php echo $currentModelName; ?>->find('all', array('recursive' => 0));
+						$<?php echo $pluralName; ?> = $this-><?php echo $currentModelName; ?>->find('all', array('recursive' => -1));
 						$this->set(compact('<?php echo $pluralName; ?>','id'));
 					} elseif(!$this-><?php echo $currentModelName; ?>->exists($id)){
 						$error = $this->Cakeular->error('failure','<?php echo ucfirst(strtolower($singularHumanName)); ?> was not found');
@@ -41,6 +41,14 @@
 					}
 					break;
 				case 'POST':
+					if(!isset($this->request->data['body'])){
+						$error = $this->Cakeular->error('failure','POST body is missing');
+						$<?php echo $pluralName; ?> = array(
+							'<?php echo ucfirst(strtolower($singularHumanName)); ?>' => $error
+						);
+						$this->set(compact('<?php echo $pluralName; ?>'));
+						break;
+					}
 					$this-><?php echo $currentModelName; ?>->create();
 					if ($this-><?php echo $currentModelName; ?>->save(json_decode($this->request->data['body'], true))) {
 						$this->redirect(array('action' => 'index', $this-><?php echo $currentModelName; ?>->id));
