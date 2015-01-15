@@ -12,8 +12,7 @@ The master branch has the following requirements:
 ## Installation
 
 1. Clone/Copy the files in this directory into `app/Plugin/Cakeular`.
-2. Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::load('Cakeular');`.
-3. Modify `app/Config/routes.php` to include the following code before CakePlugin::routes(); is called.
+2. Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::loadAll(array('Cakeular' => array('routes' => true)));`.
 
 ```
 /**

@@ -18,12 +18,12 @@
  */
 ?>	
 		/**
-		 * index method
+		 * api method
 		 *
 		 * @return void
 		 * @throws exception
 		 */
-		public function index($id = null) {
+		public function api($id = null) {
 			switch ($this->request->method()) {
 				case 'GET':
 					if (!$id) {
