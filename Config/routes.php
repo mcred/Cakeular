@@ -7,3 +7,4 @@
 	if($subdomain == 'api'){
 		Router::connect('/:controller/*', array('action' => 'api'));
 	}
+	Router::connect('/:controller/*', array('action' => 'index'));

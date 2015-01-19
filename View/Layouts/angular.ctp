@@ -59,13 +59,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="container">
-			<?php echo $this->Session->flash(); ?>
-			<?php echo $this->fetch('content'); ?>
-		</div>
+		<?php echo $this->Session->flash(); ?>
+		<?php echo $this->fetch('content'); ?>
 		<?php
 			echo $this->Html->script(array(
-				'//ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js',
+				'//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js',
+				'//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-route.js',
 				'//code.jquery.com/jquery-1.11.0.min.js',
 				'/cherry/js/core',
 			));

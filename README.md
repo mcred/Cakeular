@@ -30,6 +30,10 @@ $ cd /path/to/CakePHP/project/
 $ git submodule add https://github.com/mcred/Cakeular.git app/Plugin/Cakeular
 ```
 
+### Cross-origin resource sharing (CORS) 
+
+Your server must allow CORS from the requesting application. This can be enabled a few ways. The easiest I have found is to allow the host for my application to the .htaccess file in the /app folder. Add the following line: `Header set Access-Control-Allow-Origin "localhost or yourserver"`
+
 # Documentation
 
 ## Cakeular Console Templates
