@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Cakeular : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Cakeular</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mcred/Cakeular">View on GitHub</a>
+
+          <h1 id="project_title">Cakeular</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mcred/Cakeular/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mcred/Cakeular/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="cakeular-cakephp-plugin" class="anchor" href="#cakeular-cakephp-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cakeular CakePHP Plugin</h1>
+
+<p>Cakeular is a Angular.js Plugin for CakePHP. It creates a RESTful JSON API service from your models and Angular.js views. </p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>The master branch has the following requirements:</p>
+
+<ul>
+<li>CakePHP 2.2.0 or greater.</li>
+<li>PHP 5.3.0 or greater.</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ol>
+<li>Clone/Copy the files in this directory into <code>app/Plugin/Cakeular</code>.</li>
+<li>Ensure the plugin is loaded in <code>app/Config/bootstrap.php</code> by calling <code>CakePlugin::loadAll(array('Cakeular' =&gt; array('routes' =&gt; true)));</code>.</li>
+</ol>
+
+<pre><code>/**
+ * ... connect Cakeular RESTful URLs to JSON API.
+ */
+    Router::connect('/:controller/*', array('action' =&gt; 'index'));
+</code></pre>
+
+<h3>
+<a id="install-as-git-submodule" class="anchor" href="#install-as-git-submodule" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install as Git submodule</h3>
+
+<p>You can replace Step 1 above with the following to add Cakeular to your CakePHP project as a submodule:</p>
+
+<pre><code>$ cd /path/to/CakePHP/project/
+$ git submodule add https://github.com/mcred/Cakeular.git app/Plugin/Cakeular
+</code></pre>
+
+<h3>
+<a id="cross-origin-resource-sharing-cors" class="anchor" href="#cross-origin-resource-sharing-cors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross-origin resource sharing (CORS)</h3>
+
+<p>Your server must allow CORS from the requesting application. This can be enabled a few ways. The easiest I have found is to allow the host for my application to the .htaccess file in the /app folder. Add the following line: <code>Header set Access-Control-Allow-Origin "localhost or yourserver"</code></p>
+
+<h1>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h1>
+
+<h2>
+<a id="cakeular-console-templates" class="anchor" href="#cakeular-console-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cakeular Console Templates</h2>
+
+<p>We have included Console Templates to allow you to easily bake a project and gain Angular functionality throughout.</p>
+
+<p>To utilize the Console Templates simply bake your project like usual but select <code>Cakeular</code> when it asks you which template you would like to use.</p>
+
+<h2>
+<a id="api-routes" class="anchor" href="#api-routes" aria-hidden="true"><span class="octicon octicon-link"></span></a>API Routes</h2>
+
+<p>The standard Cake controller methods are replaced by a RESTful JSON API. So instead of viewing an individual record for your model by going to <code>/model/view/:id</code>, JSON data for this record can be seen by a GET request to <code>/model/:id</code>. The replacement for Cake methods are as follows:</p>
+
+<p><code>/model/index/</code> becomes a GET request to <code>/model/</code>
+<code>/model/view/:id</code> becomes a GET request to <code>/model/:id</code>
+<code>/model/add</code> becomes a POST request to <code>/model/</code>, send the model as the 'body' of a POST as a JSON string.
+<code>/model/edit/:id</code> becomes a POST request to <code>/model/</code>, send the model as the 'body' of a POST as a JSON string.
+<code>/model/delete:id</code> becomes a DELETE request to <code>/model/</code></p>
+
+<h1>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h1>
+
+<ul>
+<li>Add Angular.js templates to replace the standard cake view templates</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Cakeular maintained by <a href="https://github.com/mcred">mcred</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
