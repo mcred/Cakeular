@@ -62,20 +62,19 @@
 <?php if (!empty($associations['hasOne'])): ?>
 <?php foreach ($associations['hasOne'] as $alias => $details): ?>
 		<div class="related">
-			<h3><?php echo "<?php echo __('Related " . Inflector::humanize($details['controller']) . "'); ?>"; ?></h3>
-			<?php echo "<?php if (!empty(\${$singularVar}['{$alias}'])): ?>\n"; ?>
-				<dl class="dl-horizontal">
+			<h3>Related <?php echo Inflector::humanize($details['controller']); ?></h3>
+			<dl class="dl-horizontal">
 <?php foreach ($details['fields'] as $field): ?>
-					<dt title="<?php echo "<?php echo __('" . Inflector::humanize($field) . "'); ?>"; ?>"><?php echo "<?php echo __('" . Inflector::humanize($field) . "'); ?>"; ?></dt>
-					<dd><?php echo "<?php echo \${$singularVar}['{$alias}']['{$field}']; ?>"; ?>&nbsp;</dd>
+				<dt title="<?php echo Inflector::humanize($field); ?>"><?php echo Inflector::humanize($field); ?></dt>
+				<dd>{{ <?php echo $pluralVar. "." . $singularHumanName . "." . $field; ?> }}</dd>
 <?php endforeach; ?>
-				</dl>
+			</dl>
 			<?php echo "<?php endif; ?>\n"; ?>
 			<div class="actions">
 				<div class="btn-group">
-					<?php echo "<?php echo \$this->Html->link('<span class=\"glyphicon glyphicon-list-alt\"></span>', array('controller' => '{$details['controller']}', 'action' => 'view', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-default btn-xs', 'title' => __('View'), 'escape' => false)); ?>\n"; ?>
-					<?php echo "<?php echo \$this->Html->link('<span class=\"glyphicon glyphicon-pencil\"></span>', array('controller' => '{$details['controller']}', 'action' => 'edit', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-default btn-xs', 'title' => __('Edit'), 'escape' => false)); ?>\n"; ?>
-					<?php echo "<?php echo \$this->Form->postLink('<span class=\"glyphicon glyphicon-trash\"></span>', array('controller' => '{$details['controller']}', 'action' => 'delete', \${$otherSingularVar}['{$details['primaryKey']}']), array('class' => 'btn btn-default btn-xs', 'title' => __('Delete'), 'escape' => false, 'confirm' => __('Are you sure you want to delete this record (ID: %s)?', \${$otherSingularVar}['{$details['primaryKey']}']))); ?>\n"; ?>
+					<a class="btn btn-default btn-xs" href="/<?php echo $details['controller']; ?>/#/view/{{ <?php echo $otherSingularVar . '.id'; ?> }}"><span class="glyphicon glyphicon-list-alt"></span></a>
+					<a class="btn btn-default btn-xs" href="/<?php echo $details['controller']; ?>/#/edit/{{ <?php echo $otherSingularVar . '.id'; ?> }}"><span class="glyphicon glyphicon-pencil"></span></a>
+					<a class="btn btn-default btn-xs" href="/<?php echo $details['controller']; ?>/#/delete/{{ <?php echo $otherSingularVar . '.id'; ?> }}"><span class="glyphicon glyphicon-trash"></span></a>
 				</div>
 			</div>
 		</div>
@@ -108,7 +107,7 @@
 <?php endforeach; ?>
 						<td class="actions">
 							<div class="btn-group">
-								<a class="btn btn-default btn-xs" href="/<?php echo $details['controller']; ?>/#/"><span class="glyphicon glyphicon-list-alt"></span></a>
+								<a class="btn btn-default btn-xs" href="/<?php echo $details['controller']; ?>/#/view/{{ <?php echo $otherSingularVar . '.id'; ?> }}"><span class="glyphicon glyphicon-list-alt"></span></a>
 								<a class="btn btn-default btn-xs" href="/<?php echo $details['controller']; ?>/#/edit/{{ <?php echo $otherSingularVar . '.id'; ?> }}"><span class="glyphicon glyphicon-pencil"></span></a>
 								<a class="btn btn-default btn-xs" href="/<?php echo $details['controller']; ?>/#/delete/{{ <?php echo $otherSingularVar . '.id'; ?> }}"><span class="glyphicon glyphicon-trash"></span></a>
 							</div>

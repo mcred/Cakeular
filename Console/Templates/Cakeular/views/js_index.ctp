@@ -8,6 +8,7 @@
 	});
 
 	app.controller("<?php echo $pluralHumanName; ?>IndexCtrl", function($scope, $http) {
+		$scope.predicate = 'id';
 		$scope.name = "<?php echo $pluralHumanName; ?>IndexCtrl";
 		$scope.<?php echo $pluralVar ;?> = [];
 		$http.get('//api.localhost:8888/<?php echo $pluralVar ;?>/').success(function(data) {

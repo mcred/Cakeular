@@ -13,10 +13,10 @@
 			<table class="table table-striped table-bordered">
 				<tr>
 <?php foreach ($fields as $field): ?>
-					<th><?php echo $field; ?></th>
+					<th><a href="" ng-click="predicate = '<?php echo $singularHumanName ;?>.<?php echo $field; ?>'; reverse=!reverse"><?php echo $field; ?></a></th>
 <?php endforeach; ?>
 				</tr>
-				<tr ng-repeat="<?php echo $singularVar ;?> in <?php echo $pluralVar ;?>">
+				<tr ng-repeat="<?php echo $singularVar ;?> in <?php echo $pluralVar ;?> | orderBy:predicate:reverse">
 <?php foreach ($fields as $field): ?>
 	<?php if($field == 'id'){ ?>
 					<td><a href="/<?php echo $pluralVar ;?>/#/view/{{<?php echo $singularVar ;?>.<?php echo $singularHumanName ;?>.id}}">{{<?php echo $singularVar ;?>.<?php echo $singularHumanName ;?>.<?php echo $field ;?>}}</a></td>
