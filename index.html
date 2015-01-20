@@ -4,7 +4,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Cakeular : ">
+    <meta name="description" content="Cakeular : Angular.js plugin CakePHP 2.x for baking projects with Angular.js views and html templates.">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/mcred/Cakeular">View on GitHub</a>
 
           <h1 id="project_title">Cakeular</h1>
-          <h2 id="project_tagline"></h2>
+          <h2 id="project_tagline">Angular.js plugin CakePHP 2.x for baking projects with Angular.js views and html templates.</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/mcred/Cakeular/zipball/master">Download this project as a .zip file</a>
@@ -54,12 +54,6 @@
 <li>Ensure the plugin is loaded in <code>app/Config/bootstrap.php</code> by calling <code>CakePlugin::loadAll(array('Cakeular' =&gt; array('routes' =&gt; true)));</code>.</li>
 </ol>
 
-<pre><code>/**
- * ... connect Cakeular RESTful URLs to JSON API.
- */
-    Router::connect('/:controller/*', array('action' =&gt; 'index'));
-</code></pre>
-
 <h3>
 <a id="install-as-git-submodule" class="anchor" href="#install-as-git-submodule" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install as Git submodule</h3>
 
@@ -89,17 +83,18 @@ $ git submodule add https://github.com/mcred/Cakeular.git app/Plugin/Cakeular
 
 <p>The standard Cake controller methods are replaced by a RESTful JSON API. So instead of viewing an individual record for your model by going to <code>/model/view/:id</code>, JSON data for this record can be seen by a GET request to <code>/model/:id</code>. The replacement for Cake methods are as follows:</p>
 
-<p><code>/model/index/</code> becomes a GET request to <code>/model/</code>
-<code>/model/view/:id</code> becomes a GET request to <code>/model/:id</code>
-<code>/model/add</code> becomes a POST request to <code>/model/</code>, send the model as the 'body' of a POST as a JSON string.
-<code>/model/edit/:id</code> becomes a POST request to <code>/model/</code>, send the model as the 'body' of a POST as a JSON string.
-<code>/model/delete:id</code> becomes a DELETE request to <code>/model/</code></p>
+<p><code>/model/index/</code> becomes a GET request to <code>/model/</code><br>
+<code>/model/view/:id</code> becomes a GET request to <code>/model/:id</code><br>
+<code>/model/add</code> becomes a POST request to <code>/model/</code>, send the model as the 'body' of a POST as a JSON string.<br>
+<code>/model/edit/:id</code> becomes a POST request to <code>/model/</code>, send the model as the 'body' of a POST as a JSON string.<br>
+<code>/model/delete:id</code> becomes a DELETE request to <code>/model/</code><br></p>
 
 <h1>
 <a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h1>
 
 <ul>
-<li>Add Angular.js templates to replace the standard cake view templates</li>
+<li>Add Angular.js templates for Add and Edit</li>
+<li>Move paginate functions in to RootScope</li>
 </ul>
       </section>
     </div>
