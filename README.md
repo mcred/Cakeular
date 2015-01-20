@@ -14,13 +14,6 @@ The master branch has the following requirements:
 1. Clone/Copy the files in this directory into `app/Plugin/Cakeular`.
 2. Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::loadAll(array('Cakeular' => array('routes' => true)));`.
 
-```
-/**
- * ... connect Cakeular RESTful URLs to JSON API.
- */
-	Router::connect('/:controller/*', array('action' => 'index'));
-```
-
 ### Install as Git submodule
 
 You can replace Step 1 above with the following to add Cakeular to your CakePHP project as a submodule:
@@ -46,13 +39,14 @@ To utilize the Console Templates simply bake your project like usual but select 
 
 The standard Cake controller methods are replaced by a RESTful JSON API. So instead of viewing an individual record for your model by going to `/model/view/:id`, JSON data for this record can be seen by a GET request to `/model/:id`. The replacement for Cake methods are as follows:
 
-`/model/index/` becomes a GET request to `/model/`
-`/model/view/:id` becomes a GET request to `/model/:id`
-`/model/add` becomes a POST request to `/model/`, send the model as the 'body' of a POST as a JSON string.
-`/model/edit/:id` becomes a POST request to `/model/`, send the model as the 'body' of a POST as a JSON string.
-`/model/delete:id` becomes a DELETE request to `/model/`
+`/model/index/` becomes a GET request to `/model/`<br />
+`/model/view/:id` becomes a GET request to `/model/:id`<br />
+`/model/add` becomes a POST request to `/model/`, send the model as the 'body' of a POST as a JSON string.<br />
+`/model/edit/:id` becomes a POST request to `/model/`, send the model as the 'body' of a POST as a JSON string.<br />
+`/model/delete:id` becomes a DELETE request to `/model/`<br />
 
 
 # TODO
 
-* Add Angular.js templates to replace the standard cake view templates
+* Add Angular.js templates for Add and Edit
+* Move paginate functions in to RootScope
