@@ -59,7 +59,8 @@ class CakeularTask extends BakeTask {
  *
  * @var array
  */
-	public $scaffoldActions = array('index', 'view', 'add', 'edit');
+	public $scaffoldActions = array('html_index', 'html_view', 'js_index');
+	//public $scaffoldActions = array('html_index','html_view','html_add','html_edit','js_index');
 
 /**
  * An array of action names that don't require templates. These
@@ -85,9 +86,11 @@ class CakeularTask extends BakeTask {
  */
 	public function execute() {
 		parent::execute();
+
 		if (empty($this->args)) {
 			$this->_interactive();
 		}
+
 		if (empty($this->args[0])) {
 			return;
 		}
@@ -352,8 +355,23 @@ class CakeularTask extends BakeTask {
 			return false;
 		}
 		$this->out("\n" . __d('cake_console', 'Baking `%s` view file...', $action), 1, Shell::QUIET);
-		$path = $this->getPath();
-		$filename = WWW_ROOT . DS . 'js' . $this->controllerName . DS . Inflector::underscore($action) . '.js';
+
+		$checkAction = explode('_', $action);
+		switch ($checkAction[0]) {
+			case 'html':
+				$action = str_replace('html_', '', $action);
+				$filename = WWW_ROOT . DS . 'view' . DS . strtolower($this->controllerName) . DS . Inflector::underscore($action) . '.html';
+				break;
+
+			case 'js':
+				$action = str_replace('js_', '', $action);
+				$filename = WWW_ROOT . DS . 'js' . DS . strtolower($this->controllerName) . '.js';
+				break;
+			
+			default:
+				break;
+		}
+
 		return $this->createFile($filename, $content);
 	}
 
@@ -393,7 +411,7 @@ class CakeularTask extends BakeTask {
 			return $this->template;
 		}
 		$themePath = $this->Template->getThemePath();
-		if (file_exists($themePath . 'views' . DS . $action . '.ctp')) {
+		if (file_exists($themePath . 'views' .DS. 'html' . DS . $action . '.ctp')) {
 			return $action;
 		}
 		$template = $action;

@@ -33,7 +33,9 @@ Your server must allow CORS from the requesting application. This can be enabled
 
 1. Create your Database Schema following Cake Convention.
 2. `./cake bake all` for your Models. 
-3. `./cake cakular` for your Models. 
+3. Select Cakeular as your Template. 
+4. `./cake cakular` for your Models. 
+5. Do not select to Interactively Bake and select Cakeular as the Template. 
 
 # Documentation
 
