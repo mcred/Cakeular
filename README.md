@@ -13,6 +13,8 @@ The master branch has the following requirements:
 
 1. Clone/Copy the files in this directory into `app/Plugin/Cakeular`.
 2. Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::loadAll(array('Cakeular' => array('routes' => true)));`.
+3. Copy Console/Command/CakeularShell.php to /app/Console/Command/
+4. Copy Console/Command/Task/CakeularTask.php to /app/Console/Command/Task/
 
 ### Install as Git submodule
 
@@ -26,6 +28,12 @@ $ git submodule add https://github.com/mcred/Cakeular.git app/Plugin/Cakeular
 ### Cross-origin resource sharing (CORS) 
 
 Your server must allow CORS from the requesting application. This can be enabled a few ways. The easiest I have found is to allow the host for my application to the .htaccess file in the /app folder. Add the following line: `Header set Access-Control-Allow-Origin "localhost or yourserver"`
+
+# Usage
+
+1. Create your Database Schema following Cake Convention.
+2. `./cake bake all` for your Models. 
+3. `./cake cakular` for your Models. 
 
 # Documentation
 
@@ -45,8 +53,10 @@ The standard Cake controller methods are replaced by a RESTful JSON API. So inst
 `/model/edit/:id` becomes a POST request to `/model/`, send the model as the 'body' of a POST as a JSON string.<br />
 `/model/delete:id` becomes a DELETE request to `/model/`<br />
 
+##Angular Views
+
+The standard Cake views are replaced by a single index.ctp file that runs an Angular App. Each model has an Angular controller file created in /app/webroot/js. HTML templates are created for each view in /app/webroot/view/model/. 
 
 # TODO
 
 * Add Angular.js templates for Add and Edit
-* Move paginate functions in to RootScope

@@ -16,7 +16,7 @@
 					<th><a href="" ng-click="predicate = '<?php echo $singularHumanName ;?>.<?php echo $field; ?>'; reverse=!reverse"><?php echo $field; ?></a></th>
 <?php endforeach; ?>
 				</tr>
-				<tr ng-repeat="<?php echo $singularVar ;?> in <?php echo $pluralVar ;?> | orderBy:predicate:reverse">
+				<tr ng-repeat="<?php echo $singularVar ;?> in <?php echo $pluralVar ;?> | orderBy:predicate:reverse | offset: currentPage*itemsPerPage | limitTo:itemsPerPage">
 <?php foreach ($fields as $field): ?>
 	<?php if($field == 'id'){ ?>
 					<td><a href="/<?php echo $pluralVar ;?>/#/view/{{<?php echo $singularVar ;?>.<?php echo $singularHumanName ;?>.id}}">{{<?php echo $singularVar ;?>.<?php echo $singularHumanName ;?>.<?php echo $field ;?>}}</a></td>
@@ -26,6 +26,19 @@
 <?php endforeach; ?>
 				</tr>
 			</table>
+	    	<div class="pull-right">
+				<ul class="pagination">
+					<li ng-class="prevPageDisabled()">
+						<a href ng-click="prevPage()">« Prev</a>
+					</li>
+					<li ng-repeat="n in range()" ng-class="{active: n == currentPage}">
+						<a href ng-click="setPage(n)">{{n+1}}</a>
+					</li>
+					<li ng-class="nextPageDisabled()">
+						<a href ng-click="nextPage()">Next »</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>	
 </div>

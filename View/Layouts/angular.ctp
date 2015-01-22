@@ -67,6 +67,7 @@
 				'//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-route.js',
 				'//code.jquery.com/jquery-1.11.0.min.js',
 				'/cherry/js/core',
+				'/cakeular/js/cakeular'
 			));
 			echo $this->fetch('script');
 		?>
