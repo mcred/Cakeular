@@ -11,8 +11,7 @@
 			echo $this->Html->meta(array('name' => 'viewport', 'content' => 'width=device-width, initial-scale=1.0, user-scalable=no'));
 			echo $this->Html->css(array(
 				'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
-				'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css',
-				'/cherry/css/core'
+				'//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css'
 			));
 			echo $this->fetch('meta');
 			echo $this->fetch('css');
@@ -65,8 +64,6 @@
 			echo $this->Html->script(array(
 				'//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js',
 				'//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-route.js',
-				'//code.jquery.com/jquery-1.11.0.min.js',
-				'/cherry/js/core',
 				'/cakeular/js/cakeular'
 			));
 			echo $this->fetch('script');
