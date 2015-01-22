@@ -52,6 +52,8 @@
 <ol>
 <li>Clone/Copy the files in this directory into <code>app/Plugin/Cakeular</code>.</li>
 <li>Ensure the plugin is loaded in <code>app/Config/bootstrap.php</code> by calling <code>CakePlugin::loadAll(array('Cakeular' =&gt; array('routes' =&gt; true)));</code>.</li>
+<li>Copy Console/Command/CakeularShell.php to /app/Console/Command/</li>
+<li>Copy Console/Command/Task/CakeularTask.php to /app/Console/Command/Task/</li>
 </ol>
 
 <h3>
@@ -67,6 +69,19 @@ $ git submodule add https://github.com/mcred/Cakeular.git app/Plugin/Cakeular
 <a id="cross-origin-resource-sharing-cors" class="anchor" href="#cross-origin-resource-sharing-cors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross-origin resource sharing (CORS)</h3>
 
 <p>Your server must allow CORS from the requesting application. This can be enabled a few ways. The easiest I have found is to allow the host for my application to the .htaccess file in the /app folder. Add the following line: <code>Header set Access-Control-Allow-Origin "localhost or yourserver"</code></p>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<ol>
+<li>Create your Database Schema following Cake Convention.</li>
+<li>
+<code>./cake bake all</code> for your Models. </li>
+<li>Select Cakeular as your Template. </li>
+<li>
+<code>./cake cakular</code> for your Models. </li>
+<li>Do not select to Interactively Bake and select Cakeular as the Template. </li>
+</ol>
 
 <h1>
 <a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h1>
@@ -89,12 +104,16 @@ $ git submodule add https://github.com/mcred/Cakeular.git app/Plugin/Cakeular
 <code>/model/edit/:id</code> becomes a POST request to <code>/model/</code>, send the model as the 'body' of a POST as a JSON string.<br>
 <code>/model/delete:id</code> becomes a DELETE request to <code>/model/</code><br></p>
 
+<h2>
+<a id="angular-views" class="anchor" href="#angular-views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Angular Views</h2>
+
+<p>The standard Cake views are replaced by a single index.ctp file that runs an Angular App. Each model has an Angular controller file created in /app/webroot/js. HTML templates are created for each view in /app/webroot/view/model/. </p>
+
 <h1>
 <a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h1>
 
 <ul>
 <li>Add Angular.js templates for Add and Edit</li>
-<li>Move paginate functions in to RootScope</li>
 </ul>
       </section>
     </div>
