@@ -4,6 +4,7 @@
 			<div class="panel-heading"></div>
 			<div class="list-group">
 				<a href="/<?php echo $pluralVar ;?>/#/" class="list-group-item active">List <?php echo $pluralHumanName ;?></a>
+				<a href="/<?php echo $pluralVar; ?>/#/add" class="list-group-item" >Add <?php echo $singularHumanName; ?></a>
 			</div>
 		</div>
 	</div>
@@ -13,7 +14,7 @@
 			<table class="table table-striped table-bordered">
 				<tr>
 <?php foreach ($fields as $field): ?>
-					<th><a href="" ng-click="predicate = '<?php echo $singularHumanName ;?>.<?php echo $field; ?>'; reverse=!reverse"><?php echo $field; ?></a></th>
+					<th><a href="" ng-click="predicate = '<?php echo $singularHumanName ;?>.<?php echo $field; ?>'; reverse=!reverse"><?php echo Inflector::humanize($field); ?></a></th>
 <?php endforeach; ?>
 				</tr>
 				<tr ng-repeat="<?php echo $singularVar ;?> in <?php echo $pluralVar ;?> | orderBy:predicate:reverse | offset: currentPage*itemsPerPage | limitTo:itemsPerPage">
