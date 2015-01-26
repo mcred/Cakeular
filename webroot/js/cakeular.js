@@ -16,7 +16,7 @@
 					return Math.ceil(set.length/$scope.itemsPerPage); 
 				};
 				$scope.nextPage = function() { 
-					if ($scope.currentPage < $scope.pageCount()) { $scope.currentPage++; } 
+					if ($scope.currentPage < $scope.pageCount() -1 ) { $scope.currentPage++; } 
 				};
 				$scope.nextPageDisabled = function() { 
 					return $scope.currentPage === $scope.pageCount() - 1 ? "disabled" : ""; 
