@@ -54,6 +54,8 @@
 <li>Ensure the plugin is loaded in <code>app/Config/bootstrap.php</code> by calling <code>CakePlugin::loadAll(array('Cakeular' =&gt; array('routes' =&gt; true)));</code>.</li>
 <li>Copy Console/Command/CakeularShell.php to /app/Console/Command/</li>
 <li>Copy Console/Command/Task/CakeularTask.php to /app/Console/Command/Task/</li>
+<li>Copy /app/Plugin/Cakeular/Config/cakeular.php to /app/Config/cakeular.php</li>
+<li>Put the URL where your API will be hosted. The default routing expects this to be //api.yourhost</li>
 </ol>
 
 <h3>
@@ -68,7 +70,11 @@ $ git submodule add https://github.com/mcred/Cakeular.git app/Plugin/Cakeular
 <h3>
 <a id="cross-origin-resource-sharing-cors" class="anchor" href="#cross-origin-resource-sharing-cors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross-origin resource sharing (CORS)</h3>
 
-<p>Your server must allow CORS from the requesting application. This can be enabled a few ways. The easiest I have found is to allow the host for my application to the .htaccess file in the /app folder. Add the following line: <code>Header set Access-Control-Allow-Origin "localhost or yourserver"</code></p>
+<p>Your server must allow CORS from the requesting application. This can be enabled a few ways. The easiest I have found is to allow the host for my application to the .htaccess file in the /app folder. Add the following lines: </p>
+
+<pre><code>Header set Access-Control-Allow-Origin "localhost or yourserver"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+</code></pre>
 
 <h1>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
@@ -113,7 +119,8 @@ $ git submodule add https://github.com/mcred/Cakeular.git app/Plugin/Cakeular
 <a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h1>
 
 <ul>
-<li>Add Angular.js templates for Add and Edit</li>
+<li>Clean up and make some functions global</li>
+<li>Add Angular routing for delete</li>
 </ul>
       </section>
     </div>
