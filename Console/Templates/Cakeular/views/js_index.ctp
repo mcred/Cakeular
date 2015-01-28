@@ -27,17 +27,59 @@
 
 	app.controller("<?php echo $pluralHumanName; ?>AddController", function($scope, $http, $routeParams, $location) {
 		$scope.name = "<?php echo $pluralHumanName; ?>AddController";
-		$scope.add = function(){
+<?php if (!empty($associations['belongsTo'])):
+	foreach ($associations['belongsTo'] as $alias => $details): ?>
+		$scope.<?php echo $details['controller']; ?> = [];
+		$http.get('//api.localhost:8888/<?php echo $details['controller']; ?>/').success(function(data) {
+	        $scope.<?php echo $details['controller']; ?> = data;
+	    });
+<?php break;
+endforeach;
+endif; ?>
+		$scope.send = function(){
             $http({
             	url: '//api.localhost:8888/<?php echo $pluralVar ;?>/',
             	method: "POST",
-            	data: 'body=' + JSON.stringify({<?php echo $singularHumanName; ?>:$scope.<?php echo $singularVar ;?>}),
+            	data: 'body=' + JSON.stringify({<?php echo $singularHumanName; ?>:$scope.<?php echo $pluralVar ?>.<?php echo $singularHumanName ;?>}),
             	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     		}).success(function (data, status, headers, config) {
     			if(data.<?php echo $singularHumanName; ?>.type = 'success'){
     				$location.path("/");
     			} else {
     				alert('<?php echo $singularHumanName; ?> could not be added.')
+    			}
+        	}).error(function (data, status, headers, config) {
+	        	alert(status + ' ' + data);
+            });
+		}
+	});
+
+	app.controller("<?php echo $pluralHumanName; ?>EditController", function($scope, $http, $routeParams, $location) {
+		$scope.name = "<?php echo $pluralHumanName; ?>EditController";
+<?php if (!empty($associations['belongsTo'])):
+	foreach ($associations['belongsTo'] as $alias => $details): ?>
+		$scope.<?php echo $details['controller']; ?> = [];
+		$http.get('//api.localhost:8888/<?php echo $details['controller']; ?>/').success(function(data) {
+	        $scope.<?php echo $details['controller']; ?> = data;
+	    });
+<?php break;
+endforeach;
+endif; ?>
+		$scope.<?php echo $pluralVar ;?> = [];
+		$http.get('//api.localhost:8888/<?php echo $pluralVar ;?>/' + $routeParams.id).success(function(data) {
+	        $scope.<?php echo $pluralVar ;?> = data;
+	    });
+		$scope.send = function(){
+            $http({
+            	url: '//api.localhost:8888/<?php echo $pluralVar ;?>/' + $routeParams.id,
+            	method: "PUT",
+            	data: 'body=' + JSON.stringify({<?php echo $singularHumanName; ?>:$scope.<?php echo $pluralVar ?>.<?php echo $singularHumanName ;?>}),
+            	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    		}).success(function (data, status, headers, config) {
+    			if(data.<?php echo $singularHumanName; ?>.type = 'success'){
+    				$location.path("/");
+    			} else {
+    				alert('<?php echo $singularHumanName; ?> could not be updated.')
     			}
         	}).error(function (data, status, headers, config) {
 	        	alert(status + ' ' + data);
@@ -58,6 +100,10 @@
 			.when('/add', {
 				templateUrl : '/view/<?php echo $pluralVar ;?>/add.html',
 				controller  : '<?php echo $pluralHumanName; ?>AddController'
+			})
+			.when('/edit/:id', {
+				templateUrl : '/view/<?php echo $pluralVar ;?>/edit.html',
+				controller  : '<?php echo $pluralHumanName; ?>EditController'
 			})
 	});
 

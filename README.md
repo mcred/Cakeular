@@ -27,7 +27,11 @@ $ git submodule add https://github.com/mcred/Cakeular.git app/Plugin/Cakeular
 
 ### Cross-origin resource sharing (CORS) 
 
-Your server must allow CORS from the requesting application. This can be enabled a few ways. The easiest I have found is to allow the host for my application to the .htaccess file in the /app folder. Add the following line: `Header set Access-Control-Allow-Origin "localhost or yourserver"`
+Your server must allow CORS from the requesting application. This can be enabled a few ways. The easiest I have found is to allow the host for my application to the .htaccess file in the /app folder. Add the following lines: 
+```
+Header set Access-Control-Allow-Origin "localhost or yourserver"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+```
 
 # Usage
 
@@ -61,4 +65,5 @@ The standard Cake views are replaced by a single index.ctp file that runs an Ang
 
 # TODO
 
-* Add Angular.js templates for Add and Edit
+* Clean up and make some functions global
+* Add Angular routing for delete

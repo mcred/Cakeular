@@ -86,8 +86,20 @@
 						$this->set(compact('<?php echo $pluralName; ?>'));
 						break;
 					}
+					if(!isset($this->request->data['body'])){
+						$error = $this->Cakeular->error('failure','POST body is missing');
+						$<?php echo $pluralName; ?> = array(
+							'<?php echo ucfirst(strtolower($singularHumanName)); ?>' => $error
+						);
+						$this->set(compact('<?php echo $pluralName; ?>'));
+						break;
+					}
 					if ($this-><?php echo $currentModelName; ?>->save(json_decode($this->request->data['body'], true))) {
-						$this->redirect(array('action' => 'index', $this-><?php echo $currentModelName; ?>->id));
+						$message = $this->Cakeular->message('success','<?php echo ucfirst(strtolower($singularHumanName)); ?> was added');
+						$<?php echo $singularName; ?> = array(
+							'<?php echo ucfirst(strtolower($singularHumanName)); ?>' => $message
+						);
+						$this->set(compact('<?php echo $singularName; ?>','id'));
 					} else {
 						$error = $this->Cakeular->error('failure','<?php echo ucfirst(strtolower($singularHumanName)); ?> was not saved');
 						$<?php echo $singularName; ?> = array(
