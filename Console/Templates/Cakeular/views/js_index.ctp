@@ -11,7 +11,7 @@
 		$scope.predicate = 'id';
 		$scope.name = "<?php echo $pluralHumanName; ?>IndexController";
 		$scope.<?php echo $pluralVar ;?> = [];
-		$http.get('//api.localhost:8888/<?php echo $pluralVar ;?>/').success(function(data) {
+		$http.get('//<?php echo Configure::read('Cakeular.api_url') ?>/<?php echo $pluralVar ;?>/').success(function(data) {
 	        $scope.<?php echo $pluralVar ;?> = data;
 			components.paginate($scope, data);
 	    });
@@ -20,7 +20,7 @@
 	app.controller("<?php echo $pluralHumanName; ?>ViewController", function($scope, $http, $routeParams) {
 		$scope.name = "<?php echo $pluralHumanName; ?>ViewController";
 		$scope.<?php echo $pluralVar ;?> = [];
-		$http.get('//api.localhost:8888/<?php echo $pluralVar ;?>/' + $routeParams.id).success(function(data) {
+		$http.get('//<?php echo Configure::read('Cakeular.api_url') ?>/<?php echo $pluralVar ;?>/' + $routeParams.id).success(function(data) {
 	        $scope.<?php echo $pluralVar ;?> = data;
 	    });
 	});
@@ -30,7 +30,7 @@
 <?php if (!empty($associations['belongsTo'])):
 	foreach ($associations['belongsTo'] as $alias => $details): ?>
 		$scope.<?php echo $details['controller']; ?> = [];
-		$http.get('//api.localhost:8888/<?php echo $details['controller']; ?>/').success(function(data) {
+		$http.get('//<?php echo Configure::read('Cakeular.api_url') ?>/<?php echo $details['controller']; ?>/').success(function(data) {
 	        $scope.<?php echo $details['controller']; ?> = data;
 	    });
 <?php break;
@@ -38,7 +38,7 @@ endforeach;
 endif; ?>
 		$scope.send = function(){
             $http({
-            	url: '//api.localhost:8888/<?php echo $pluralVar ;?>/',
+            	url: '//<?php echo Configure::read('Cakeular.api_url') ?>/<?php echo $pluralVar ;?>/',
             	method: "POST",
             	data: 'body=' + JSON.stringify({<?php echo $singularHumanName; ?>:$scope.<?php echo $pluralVar ?>.<?php echo $singularHumanName ;?>}),
             	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -59,19 +59,19 @@ endif; ?>
 <?php if (!empty($associations['belongsTo'])):
 	foreach ($associations['belongsTo'] as $alias => $details): ?>
 		$scope.<?php echo $details['controller']; ?> = [];
-		$http.get('//api.localhost:8888/<?php echo $details['controller']; ?>/').success(function(data) {
+		$http.get('//<?php echo Configure::read('Cakeular.api_url') ?>/<?php echo $details['controller']; ?>/').success(function(data) {
 	        $scope.<?php echo $details['controller']; ?> = data;
 	    });
 <?php break;
 endforeach;
 endif; ?>
 		$scope.<?php echo $pluralVar ;?> = [];
-		$http.get('//api.localhost:8888/<?php echo $pluralVar ;?>/' + $routeParams.id).success(function(data) {
+		$http.get('//<?php echo Configure::read('Cakeular.api_url') ?>/<?php echo $pluralVar ;?>/' + $routeParams.id).success(function(data) {
 	        $scope.<?php echo $pluralVar ;?> = data;
 	    });
 		$scope.send = function(){
             $http({
-            	url: '//api.localhost:8888/<?php echo $pluralVar ;?>/' + $routeParams.id,
+            	url: '//<?php echo Configure::read('Cakeular.api_url') ?>/<?php echo $pluralVar ;?>/' + $routeParams.id,
             	method: "PUT",
             	data: 'body=' + JSON.stringify({<?php echo $singularHumanName; ?>:$scope.<?php echo $pluralVar ?>.<?php echo $singularHumanName ;?>}),
             	headers: {'Content-Type': 'application/x-www-form-urlencoded'}

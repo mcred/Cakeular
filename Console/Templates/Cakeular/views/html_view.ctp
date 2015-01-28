@@ -21,8 +21,8 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Actions</div>
 			<div class="list-group">
-				<a class="list-group-item" href="/<?php echo $pluralVar; ?>"/#/>List <?php echo $pluralHumanName; ?></a>
-				<a class="list-group-item" href="/<?php echo $pluralVar; ?>"/#/add>Add <?php echo $singularHumanName; ?></a>
+				<a class="list-group-item" href="/<?php echo $pluralVar; ?>/#/">List <?php echo $pluralHumanName; ?></a>
+				<a class="list-group-item" href="/<?php echo $pluralVar; ?>/#/add">Add <?php echo $singularHumanName; ?></a>
 			</div>
 		</div>
 		<div class="panel panel-default">

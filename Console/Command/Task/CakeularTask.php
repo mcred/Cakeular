@@ -18,6 +18,7 @@
 App::uses('AppShell', 'Console/Command');
 App::uses('Controller', 'Controller');
 App::uses('BakeTask', 'Console/Command/Task');
+Configure::load('cakeular');
 
 /**
  * Task class for creating and updating view files.
@@ -59,8 +60,7 @@ class CakeularTask extends BakeTask {
  *
  * @var array
  */
-	public $scaffoldActions = array('html_index', 'html_view', 'js_index');
-	//public $scaffoldActions = array('html_index','html_view','html_add','html_edit','js_index');
+	public $scaffoldActions = array('html_index', 'html_view', 'html_add', 'html_edit', 'js_index');
 
 /**
  * An array of action names that don't require templates. These

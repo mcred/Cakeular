@@ -15,6 +15,8 @@ The master branch has the following requirements:
 2. Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::loadAll(array('Cakeular' => array('routes' => true)));`.
 3. Copy Console/Command/CakeularShell.php to /app/Console/Command/
 4. Copy Console/Command/Task/CakeularTask.php to /app/Console/Command/Task/
+5. Copy /app/Plugin/Cakeular/Config/cakeular.php to /app/Config/cakeular.php
+6. Put the URL where your API will be hosted. The default routing expects this to be //api.yourhost
 
 ### Install as Git submodule
 
