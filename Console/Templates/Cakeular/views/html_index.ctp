@@ -16,6 +16,7 @@
 <?php foreach ($fields as $field): ?>
 					<th><a href="" ng-click="predicate = '<?php echo $singularHumanName ;?>.<?php echo $field; ?>'; reverse=!reverse"><?php echo Inflector::humanize($field); ?></a></th>
 <?php endforeach; ?>
+					<th class="actions"><a href="">Actions</a></th>
 				</tr>
 				<tr ng-repeat="<?php echo $singularVar ;?> in <?php echo $pluralVar ;?> | orderBy:predicate:reverse | offset: currentPage*itemsPerPage | limitTo:itemsPerPage">
 <?php foreach ($fields as $field): ?>
@@ -25,6 +26,19 @@
 					<td>{{<?php echo $singularVar ;?>.<?php echo $singularHumanName ;?>.<?php echo $field ;?>}}</td>
 	<?php } ?>					
 <?php endforeach; ?>
+					<td class="actions">
+						<div class="btn-group">
+							<a href="/<?php echo $pluralVar ;?>/#/view/{{<?php echo $singularVar ;?>.<?php echo $singularHumanName ;?>.id}}" class="btn btn-default btn-xs">
+								<span class="glyphicon glyphicon-eye-open"></span>
+							</a>
+							<a href="/<?php echo $pluralVar ;?>/#/edit/{{<?php echo $singularVar ;?>.<?php echo $singularHumanName ;?>.id}}" class="btn btn-default btn-xs">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</a>
+							<a href="/<?php echo $pluralVar ;?>/#/delete/{{<?php echo $singularVar ;?>.<?php echo $singularHumanName ;?>.id}}" class="btn btn-default btn-xs">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a>
+						</div>
+					</td>
 				</tr>
 			</table>
 	    	<div class="pull-right">

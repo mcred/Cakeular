@@ -105,6 +105,22 @@ endif; ?>
 				templateUrl : '/view/<?php echo $pluralVar ;?>/edit.html',
 				controller  : '<?php echo $pluralHumanName; ?>EditController'
 			})
+			.when('/delete/:id', {
+		        resolve: {
+		            <?php echo $pluralVar ;?>Delete: function ($http, $route, $location) {
+		               $http.delete('//<?php echo Configure::read('Cakeular.api_url') ?>/<?php echo $pluralVar ;?>/'+ $route.current.params.id)
+						.success(function(data) {
+							if(data.<?php echo $singularHumanName; ?>.type = 'success'){
+								$location.path("/");
+							} else {
+								alert('<?php echo $singularHumanName; ?> could not be deleted.')
+							}
+						}).error(function (data, status, headers, config) {
+							alert('<?php echo $singularHumanName; ?> could not be deleted.')
+						});
+		            }
+		       }
+			})
 	});
 
 })();
