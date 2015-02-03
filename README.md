@@ -68,4 +68,3 @@ The standard Cake views are replaced by a single index.ctp file that runs an Ang
 # TODO
 
 * Clean up and make some functions global
-* Add Angular routing for delete
