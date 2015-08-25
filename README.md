@@ -60,11 +60,7 @@ $options = array(
     ),
 );
 
-<<<<<<< HEAD
 $verify = $HttpSocket->get('http://api.localhost/REQUESTED_MODEL/', null, $options);
-=======
-$verify = $HttpSocket->get('http://api.localhost/orders/', null, $options);
->>>>>>> 267865f74dbf6d1a185a2bf221d459ae55a00b4d
 debug(json_decode($verify->body, true));
 ```
 
