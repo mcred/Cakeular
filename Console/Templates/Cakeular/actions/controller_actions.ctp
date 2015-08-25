@@ -16,8 +16,29 @@
  * @since         CakePHP(tm) v 1.3
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+Configure::load('cakeular');
 ?>	
-	
+		/**
+	     * beforeFilter
+	     *
+	     * @var array
+	     */
+	    public function beforeFilter() {
+	        if ($this->action == 'api') {
+	            if (Configure::read('Cakeular.authorize')) {
+	                if (!$this->Cakeular->authorized(getallheaders(), $this->params['controller'])) {
+	                    $error = $this->Cakeular->error('failure', 'Unauthorized');
+	                    $<?php echo $pluralName; ?> = array(
+	                        '<?php echo $currentModelName; ?>' => $error,
+	                    );
+	                    $this->set(compact('<?php echo $pluralName; ?>'));
+	                    $this->layout = 'ajax';
+	                    $this->render('api');
+	                }
+	            }
+	        }
+	    }
+
 		/**
 		 * <?php echo $admin ?>index method
 		 *
@@ -40,8 +61,19 @@
 			switch ($this->request->method()) {
 				case 'GET':
 					if (!$id) {
-						$<?php echo $pluralName; ?> = $this-><?php echo $currentModelName; ?>->find('all', array('recursive' => -1));
-						$this->set(compact('<?php echo $pluralName; ?>','id'));
+                        if ($this->request->query) {
+                            $conditions = array();
+                            foreach ($this->request->query as $key => $value) {
+                                $conditions[$key . ' LIKE'] = '%' . $value . '%';
+                            }
+                            $<?php echo $pluralName; ?> = $this-><?php echo $currentModelName; ?>->find('all', array(
+                                'recursive' => -1,
+                                'conditions' => $conditions,
+                            ));
+                        } else {
+							$<?php echo $pluralName; ?> = $this-><?php echo $currentModelName; ?>->find('all', array('recursive' => -1));
+                        }
+                        $this->set(compact('<?php echo $pluralName; ?>','id'));	
 					} elseif(!$this-><?php echo $currentModelName; ?>->exists($id)){
 						$error = $this->Cakeular->error('failure','<?php echo ucfirst(strtolower($singularHumanName)); ?> was not found');
 						$<?php echo $singularName; ?> = array(
