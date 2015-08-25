@@ -43,6 +43,27 @@ Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
 4. `./cake cakular` for your Models. 
 5. Do not select to Interactively Bake and select Cakeular as the Template. 
 
+# Options
+In the Config/cakeular.php file, there is an option to turn on Authentication for the API. If the "authorize" option is set to true, please also set your salt for the authentication. All requests must contain an Authorization Signature and Date header. The Signature is a BASE64 encoded hash made of the Requested model and the GMdate, using the salt you set up in your config file. A CakePHP HttpSocket request would look like this:
+```
+App::uses('HttpSocket', 'Network/Http');
+$HttpSocket = new HttpSocket();
+
+//build signature
+$date = date(gmdate("Ymd H:i", time()));
+$sig = base64_encode(hash_hmac('sha256', REQUESTED_MODEL . $date, CONFIGURE.SALT, true));
+
+$options = array(
+    'header' => array(
+        'Authorization' => $sig,
+        'Date' => $date,
+    ),
+);
+
+$verify = $HttpSocket->get('http://api.localhost/REQUESTED_MODEL/', null, $options);
+debug(json_decode($verify->body, true));
+```
+
 # Documentation
 
 ## Cakeular Console Templates
